@@ -1,18 +1,14 @@
 import './App.css';
-import { connect } from "react-redux";
-import {getNews as getNewsAction} from './redux/modules/news'
+import AppRouter from "./components/AppRouter";
 
-function App({news, getNews}) {
+
+function App() {
 
   return (
     <div className="App">
+        <AppRouter/>
     </div>
   );
 }
 
-export default connect(
-    ({news}) => ({news}),
-    {
-        getNews: getNewsAction
-    }
-)(App);
+export default App;
