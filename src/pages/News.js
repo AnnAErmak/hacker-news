@@ -1,9 +1,13 @@
 import React from 'react';
 
-const News = () => {
+const News = ({id, title, score, time, by}) => {
     return (
         <div>
-      Список новостей
+            {id}
+            {title}
+            {score}
+            {time}
+            {by}
         </div>
     );
 };
