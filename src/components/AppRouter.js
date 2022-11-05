@@ -1,20 +1,19 @@
 import React from 'react';
-import {Switch, Route, Redirect} from "react-router-dom";
-import News from "../pages/News";
-import CardNew from "../pages/CardNew";
+import {Switch, Route} from "react-router-dom";
+import NewsList from "../pages/NewsList";
+import PageCardNew from "../pages/PageCardNew";
 
 
 const AppRouter = () => {
     return (
         <Switch>
-
             <Route exact path='/'>
-                <News />
+                <NewsList/>
             </Route>
-            <Route path='/cardnew'>
-                <CardNew />
+            <Route path="/cartitem">
+                <PageCardNew/>
             </Route>
-            <Redirect to='/' />
+
         </Switch>
 
     );

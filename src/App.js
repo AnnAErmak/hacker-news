@@ -1,34 +1,51 @@
 import './App.css';
-import AppRouter from "./components/AppRouter";
+
 import {useEffect} from "react";
 import {fetchNews} from "./asyncActions/news";
 import {useDispatch, useSelector} from "react-redux";
-import News from "./pages/News";
+import NewsList from "./pages/NewsList";
+import {loaderOnAction} from "./store/reducers/loaderReducer";
+
+import {Route, Switch} from "react-router-dom";
+import PageCardNew from "./pages/PageCardNew";
+
+
 
 
 function App() {
     const dispatch = useDispatch()
-    const news = useSelector(state => state.newsReducer.news)
-    const isLoaded = useSelector(state => state.newsReducer.isLoaded)
-
-    const f = async () => await dispatch((fetchNews()))
+    const {loading} = useSelector(state => state.loaderReducer)
 
     useEffect(() => {
-        f()
-        const timerID = setInterval(() => dispatch((fetchNews())), 15000);
+        dispatch(loaderOnAction())
+        dispatch((fetchNews()))
+
+        const timerID = setInterval(() => dispatch((fetchNews())), 60000);
         return () => clearInterval(timerID);
     }, [])
 
-
-    const allStories = news.map(storie => (<News key={storie.id} {...storie} />))
+    const handledBtnRefresh = () => {
+        dispatch(loaderOnAction())
+        dispatch((fetchNews()))
+    }
 
     return (
-        <div className="App">
-            {isLoaded
-                ? <div>Подождите идет загрузка</div>
-                : allStories
-            }
-        </div>
+
+            <Switch>
+                <Route exact path="/">
+                    <>
+                        {!loading
+                            ? (<>
+                                <button disabled={loading} onClick={handledBtnRefresh}>Обновить новости</button>
+                                <NewsList />
+                            </>)
+                            : "Подождите... Идет загрузка данных!"}
+                    </>
+                </Route>
+
+                <Route path="/carditem/:id" component={PageCardNew} />
+            </Switch>
+
     );
 }
 

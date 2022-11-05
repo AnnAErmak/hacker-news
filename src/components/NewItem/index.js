@@ -1,6 +1,6 @@
 import React from 'react';
 
-const News = ({id, title, score, time, by}) => {
+const NewItem = ({id, title, score, time, by}) => {
     return (
         <div>
             {id}
@@ -12,4 +12,4 @@ const News = ({id, title, score, time, by}) => {
     );
 };
 
-export default News;
+export default NewItem;
