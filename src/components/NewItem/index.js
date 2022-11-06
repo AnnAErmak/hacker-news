@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NewItem = ({id, title, score, time, by}) => {
+const NewItem = ({id, title, score, time, by, descendants}) => {
     return (
         <div>
             {id}
@@ -8,6 +8,7 @@ const NewItem = ({id, title, score, time, by}) => {
             {score}
             {time}
             {by}
+            <b>{descendants}</b>
         </div>
     );
 };

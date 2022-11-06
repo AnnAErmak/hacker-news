@@ -1,17 +1,17 @@
-import React from 'react';
-import arrow from '../../assets/img/arrow-down.svg'
-import './comentCard.css'
+import React, {useEffect, useState} from 'react';
+
+import './comentList.css'
+import CommentItem from "../CommentItem";
+
 const CommentList = ({comments}) => {
+
+    const [selectCom, setSelectComm] = useState({})
+    const [subComm, setSubComm] = useState([])
+
     return (
         <>
-            {comments.map(comm => (
-                <div className='com' key={comm.id}>
-                    {comm.text}
-                    <br/>
-                    {comm.kids && <img src={arrow} width="20"/>}
-                </div>
-            ))}
-
+            {/*{console.log(comments)}*/}
+            {comments.map(comm => <CommentItem key={comm.id} data = {comm}/>)}
         </>
 
 
