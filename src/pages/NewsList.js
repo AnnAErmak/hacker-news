@@ -11,6 +11,7 @@ const NewsList = () => {
         <div>
             Страница новостей
 
+
                 { news.map(storie => {
                     return (
                         <Link to={`/carditem/${storie.id}`} key={storie.id}>
