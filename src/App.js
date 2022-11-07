@@ -1,4 +1,4 @@
-import './App.css';
+import './css/mainStyle.css';
 
 import {useEffect} from "react";
 import {fetchNews} from "./asyncActions/news";
@@ -10,11 +10,9 @@ import {Route, Switch} from "react-router-dom";
 import PageCardNew from "./pages/PageCardNew";
 
 
-
-
 function App() {
+
     const dispatch = useDispatch()
-    const {loading} = useSelector(state => state.loaderReducer)
 
     useEffect(() => {
         dispatch(loaderOnAction())
@@ -24,28 +22,13 @@ function App() {
         return () => clearInterval(timerID);
     }, [])
 
-    const handledBtnRefresh = () => {
-        dispatch(loaderOnAction())
-        dispatch((fetchNews()))
-    }
-
     return (
-
+        <div className="container">
             <Switch>
-                <Route exact path="/">
-                    <>
-                        {!loading
-                            ? (<>
-                                <button disabled={loading} onClick={handledBtnRefresh}>Обновить новости</button>
-                                <NewsList />
-                            </>)
-                            : "Подождите... Идет загрузка данных!"}
-                    </>
-                </Route>
-
-                <Route path="/carditem/:id" component={PageCardNew} />
+                <Route exact path="/" component={NewsList}/>
+                <Route path="/carditem/:id" component={PageCardNew}/>
             </Switch>
-
+        </div>
     );
 }
 

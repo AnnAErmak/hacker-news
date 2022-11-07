@@ -28,7 +28,7 @@ const [isOpenComment, setOpenComments] = useState(false)
             <br/>
             <br/>
 
-            {showSubComments.length && showSubComments.map(comm => (<CommentItem key={comm.id} data = {comm}/>))}
+            {!!showSubComments.length && showSubComments.map(comm => (<CommentItem key={comm.id} data = {comm}/>))}
         </div>
     );
 };

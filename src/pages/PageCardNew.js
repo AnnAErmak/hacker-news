@@ -30,8 +30,8 @@ const PageCardNew = () => {
 
     return(
 
-        <div>
-            Карточка с новостью
+        <div className='wrapper-page'>
+        <div className="wrapper-page__header">
             <Link to="/">
                 <button>На главную</button>
             </Link>
@@ -40,6 +40,8 @@ const PageCardNew = () => {
                 dispatch(fetchComments(id))
 
             }}>Обновить комментарии</button>
+        </div>
+        <div className="">
             <div>
                 {headerNew.id}
             </div>
@@ -58,10 +60,12 @@ const PageCardNew = () => {
             <div>
                 {headerNew.descendants}
             </div>
+        </div>
 
+
+    <div className="wrapper-page__content"></div>
             {loading && "Подождите... Идет загрузка данных!"}
             {comments.length ? <CommentList comments = {comments}/> : 'Нет ни одного комментария... Будте первым'}
-
 
         </div>
 )
