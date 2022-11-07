@@ -7,10 +7,11 @@ const CommentList = ({comments}) => {
 
 
     return (
-        <>
+        <div className='wrapper-commentlist'>
             {/*{console.log(comments)}*/}
+            <div>Комментарии</div>
             {comments.map(comm => <CommentItem key={comm.id} data = {comm}/>)}
-        </>
+        </div>
 
 
     );

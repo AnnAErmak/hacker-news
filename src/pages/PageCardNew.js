@@ -4,6 +4,8 @@ import CommentList from "../components/CommentList";
 import {useDispatch, useSelector} from "react-redux";
 import {loaderOnAction} from "../store/reducers/loaderReducer";
 import {fetchComments} from "../asyncActions/comments";
+import {dateFormatting} from "../utils/dateFormatting";
+import message from '../assets/img/message.svg'
 
 const PageCardNew = () => {
 
@@ -19,7 +21,7 @@ const PageCardNew = () => {
         dispatch(fetchComments(id))
 
         const storie = async () => {
-            const res =  await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+            const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
                 .then(response => response.json())
             setHeaderNew(res)
         }
@@ -27,48 +29,52 @@ const PageCardNew = () => {
     }, [])
 
 
-
-    return(
+    return (
 
         <div className='wrapper-page'>
-        <div className="wrapper-page__header">
-            <Link to="/">
-                <button>На главную</button>
-            </Link>
-            <button onClick={() => {
-                dispatch(loaderOnAction())
-                dispatch(fetchComments(id))
+            <div className="wrapper-page__header">
+                <div className="wrapper-btn">
+                    <Link to="/">
+                        <button>На главную</button>
+                    </Link>
+                    <button onClick={() => {
+                        dispatch(loaderOnAction())
+                        dispatch(fetchComments(id))
+                    }}>Обновить комментарии
+                    </button>
+                </div>
+            </div>
+            <div className="new-card">
+                <div  className="new-card__title">
+                    <h2>{headerNew.title}</h2>
+                </div>
+                <div className="new-card__url">
+                    <a href={headerNew.url}>{headerNew.url}</a>
+                </div>
+                <div className="new-card__info">
+                    <time>
+                        {dateFormatting(headerNew.time)}
+                    </time>
+                    <div>
+                        <b><em>{headerNew.by}</em></b>
+                    </div>
+                    <div className="message">
+                        <img src={message} width='20' alt="иконка сообщения"/>
+                        <p>{headerNew.descendants}</p>
+                    </div>
+                </div>
 
-            }}>Обновить комментарии</button>
+
+            </div>
+
+
+            <div className="wrapper-page__content">
+                {loading && "Подождите... Идет загрузка данных!"}
+                {comments.length ? <CommentList comments={comments}/> : 'Нет ни одного комментария... Будте первым'}
+            </div>
+
         </div>
-        <div className="">
-            <div>
-                {headerNew.id}
-            </div>
-            <div>
-                {headerNew.url}
-            </div>
-            <div>
-                {headerNew.title}
-            </div>
-            <div>
-                {headerNew.time}
-            </div>
-            <div>
-                {headerNew.by}
-            </div>
-            <div>
-                {headerNew.descendants}
-            </div>
-        </div>
-
-
-    <div className="wrapper-page__content"></div>
-            {loading && "Подождите... Идет загрузка данных!"}
-            {comments.length ? <CommentList comments = {comments}/> : 'Нет ни одного комментария... Будте первым'}
-
-        </div>
-)
+    )
 };
 
 export default PageCardNew;
