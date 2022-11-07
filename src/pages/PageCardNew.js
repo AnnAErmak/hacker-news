@@ -12,10 +12,18 @@ const PageCardNew = () => {
     const {loading} = useSelector(state => state.loaderReducer)
     const {comments} = useSelector(state => state.commentsReducer)
 
+    const [headerNew, setHeaderNew] = useState({})
+
     useEffect(() => {
         dispatch(loaderOnAction())
         dispatch(fetchComments(id))
 
+        const storie = async () => {
+            const res =  await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+                .then(response => response.json())
+            setHeaderNew(res)
+        }
+        storie()
     }, [])
 
 
@@ -27,8 +35,29 @@ const PageCardNew = () => {
             <Link to="/">
                 <button>На главную</button>
             </Link>
-            <button>Обновить комментарии</button>
-            {/*<HeaderNew />*/}
+            <button onClick={() => {
+                dispatch(loaderOnAction())
+                dispatch(fetchComments(id))
+
+            }}>Обновить комментарии</button>
+            <div>
+                {headerNew.id}
+            </div>
+            <div>
+                {headerNew.url}
+            </div>
+            <div>
+                {headerNew.title}
+            </div>
+            <div>
+                {headerNew.time}
+            </div>
+            <div>
+                {headerNew.by}
+            </div>
+            <div>
+                {headerNew.descendants}
+            </div>
 
             {loading && "Подождите... Идет загрузка данных!"}
             {comments.length ? <CommentList comments = {comments}/> : 'Нет ни одного комментария... Будте первым'}

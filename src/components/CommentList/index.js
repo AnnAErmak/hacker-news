@@ -5,8 +5,6 @@ import CommentItem from "../CommentItem";
 
 const CommentList = ({comments}) => {
 
-    const [selectCom, setSelectComm] = useState({})
-    const [subComm, setSubComm] = useState([])
 
     return (
         <>
