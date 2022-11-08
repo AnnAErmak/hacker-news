@@ -84,3 +84,8 @@ a, a:visited {
     margin-left: 10px;
 
 }
+.wrapper-page__content{
+    display: flex;
+    flex-direction: column;
+
+}

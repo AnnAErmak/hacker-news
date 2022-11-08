@@ -16,6 +16,8 @@ export const fetchComments =  (storieId) => {
                 })
             );
             dispatch(addCommentsSuccessAction(rootComments))
+        }else{
+            dispatch(addCommentsSuccessAction([]))
         }
         dispatch(loaderOffAction())
     }

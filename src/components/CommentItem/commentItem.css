@@ -3,12 +3,11 @@
 
 }
 .text-comment{
-    font-weight: bold;
     overflow: hidden;
     word-break: break-all;
     padding:15px;
     border-radius:15px;
-    border:0;
+    border-left: 1px solid #fe5f1e;
+    border-bottom: 1px solid #fe5f1e;
     box-shadow:4px 4px 10px rgba(0,0,0,0.06);
-    height:150px;
 }

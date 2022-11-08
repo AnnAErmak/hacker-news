@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import NewItem from "../components/NewItem";
 import {loaderOnAction} from "../store/reducers/loaderReducer";
 import {fetchNews} from "../asyncActions/news";
+import ListLoader from "../components/Loaders/ListLoader";
 
 
 const NewsList = () => {
@@ -27,18 +28,19 @@ const NewsList = () => {
             </div>
             <div className="wrapper-page__content"></div>
                 {!loading
-                    ? (<>
+                    ? (<ul className='list1b'>
                         { news.map(storie => {
                             return (
-                                <ul className='list1b'>
+
                                     <Link to={`/carditem/${storie.id}`} key={storie.id}>
                                         <NewItem {...storie} />
                                     </Link>
-                                </ul>
+
                             )
                         })}
-                    </>)
-                    : "Подождите... Идет загрузка данных!"}
+                    </ul>)
+                    :[...new Array(6)].map((_, index) => (
+                    <ListLoader key={index} />))}
         </div>
     );
 };

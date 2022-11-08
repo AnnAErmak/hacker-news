@@ -11,7 +11,6 @@ const PageCardNew = () => {
 
     const {id} = useParams()
     const dispatch = useDispatch()
-    const {loading} = useSelector(state => state.loaderReducer)
     const {comments} = useSelector(state => state.commentsReducer)
 
     const [headerNew, setHeaderNew] = useState({})
@@ -45,6 +44,7 @@ const PageCardNew = () => {
                 </div>
             </div>
             <div className="new-card">
+                {headerNew.id}
                 <div  className="new-card__title">
                     <h2>{headerNew.title}</h2>
                 </div>
@@ -63,14 +63,11 @@ const PageCardNew = () => {
                         <p>{headerNew.descendants}</p>
                     </div>
                 </div>
-
-
             </div>
 
 
             <div className="wrapper-page__content">
-                {loading && "Подождите... Идет загрузка данных!"}
-                {comments.length ? <CommentList comments={comments}/> : 'Нет ни одного комментария... Будте первым'}
+                {comments.length ? <CommentList /> : 'Нет ни одного комментария... Будте первым'}
             </div>
 
         </div>
