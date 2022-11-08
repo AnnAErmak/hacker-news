@@ -10,4 +10,4 @@
 
 ## Deploy
 
-https://celadon-sprinkles-8afd63.netlify.app/
+https://jovial-salmiakki-822878.netlify.app/
