@@ -6,6 +6,7 @@ import { loaderOnAction } from "../store/reducers/loaderReducer";
 import { fetchComments } from "../asyncActions/comments";
 import { dateFormatting } from "../utils/dateFormatting";
 import message from "../assets/img/message.svg";
+import { URL } from "../utils/const";
 
 const PageCardNew = () => {
   const { id } = useParams();
@@ -19,9 +20,9 @@ const PageCardNew = () => {
     dispatch(fetchComments(id));
 
     const storie = async () => {
-      const res = await fetch(
-        `https://hacker-news.firebaseio.com/v0/item/${id}.json`
-      ).then((response) => response.json());
+      const res = await fetch(`${URL}item/${id}.json`).then((response) =>
+        response.json()
+      );
       setHeaderNew(res);
     };
     storie();
@@ -80,5 +81,3 @@ const PageCardNew = () => {
 };
 
 export default PageCardNew;
-
-//`https://hacker-news.firebaseio.com/v0/item/33488227.json?print=pretty`

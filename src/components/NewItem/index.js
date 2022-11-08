@@ -2,7 +2,7 @@ import React from "react";
 import star from "../../assets/img/star.svg";
 import { dateFormatting } from "../../utils/dateFormatting";
 
-const NewItem = ({ title, score, time, by, descendants }) => {
+const NewItem = ({ title, score, time, by }) => {
   return (
     <li className="new-item">
       <h3 className="new-item__title">{title}</h3>
@@ -14,7 +14,6 @@ const NewItem = ({ title, score, time, by, descendants }) => {
           <span>{score}</span>
         </div>
       </div>
-      <b>{descendants}</b>
     </li>
   );
 };
